@@ -5,8 +5,12 @@
  * @package Sunflower 26
  */
 
+/*
+ * Die Hintergrundfarbe kommt aus den Block-Supports (Theme-Palette).
+ * Wird keine gesetzt, greift die Standardfarbe aus dem Stylesheet
+ * (.latest-posts:not(.has-background)).
+ */
 $sunflower_classnames   = array();
-$sunflower_classnames[] = 'has-background';
 $sunflower_classnames[] = 'latest-posts';
 
 $sunflower_is_slider = isset( $attributes['blockLayout'] ) && 'slider' === $attributes['blockLayout'];

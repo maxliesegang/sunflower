@@ -67,6 +67,9 @@ export default function Edit( { attributes, setAttributes } ) {
 		archiveText,
 		blockLayout,
 		columns,
+		backgroundColor,
+		textColor,
+		style,
 	} = attributes;
 
 	const postImageMode = useSelect(
@@ -202,6 +205,9 @@ export default function Edit( { attributes, setAttributes } ) {
 								archiveText,
 								categoriesFormValue,
 								excludedCategoriesFormValue,
+								backgroundColor,
+								textColor,
+								style,
 							} }
 						/>
 					</Disabled>

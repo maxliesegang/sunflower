@@ -7,7 +7,37 @@
 }
 
 .latest-posts {
-    background-color: map.get($custom-colors, "gruener-sand") !important;
+
+    // Standardfarbe, wenn im Block keine Hintergrundfarbe gewählt wurde.
+    &:not(.has-background) {
+        background-color: map.get($custom-colors, "gruener-sand") !important;
+    }
+
+    // Nur der Blocktitel liegt direkt auf dem Hintergrund (die Karten haben
+    // eine eigene weiße Fläche). Da die Palette fest ist (theme.json:
+    // custom = false), wird die Titelfarbe automatisch passend zum gewählten
+    // Hintergrund gesetzt – alle Paare erreichen WCAG AA (>= 4.5:1).
+    // Ohne Regel bleibt der Standard (Tanne), der auf den übrigen, hellen
+    // Farben ausreichend kontrastiert.
+    @each $sunflower-bg-slug in ("black", "tanne", "klee", "gray") {
+
+        &:not(.has-text-color).has-#{$sunflower-bg-slug}-background-color > .wp-block-group__inner-container > h2 {
+            color: var(--wp--preset--color--white) !important;
+        }
+    }
+
+    @each $sunflower-bg-slug in ("grashalm", "himmel") {
+
+        &:not(.has-text-color).has-#{$sunflower-bg-slug}-background-color > .wp-block-group__inner-container > h2 {
+            color: var(--wp--preset--color--black) !important;
+        }
+    }
+
+    // Wird im Block bewusst eine Textfarbe gewählt, hat sie Vorrang vor dem
+    // Automatismus. Der Titel erbt sie vom Wrapper.
+    &.has-text-color > .wp-block-group__inner-container > h2 {
+        color: inherit !important;
+    }
 
     padding: var(--half-block-spacing) var(--grid-margin) !important;
     overflow: hidden;
@@ -657,13 +687,16 @@
     }
 }
 
-.colorscheme-green .latest-posts {
+.colorscheme-green .latest-posts:not(.has-background) {
     background-color: map.get($custom-colors, "grashalm") !important;
 
     h2,
     h2 a {
         color: map.get($custom-colors, "schwarzwald") !important;
     }
+}
+
+.colorscheme-green .latest-posts {
 
     .slider__button:hover {
         background-color: map.get($custom-colors, "schwarzwald") !important;

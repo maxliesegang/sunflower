@@ -41,7 +41,13 @@
 		}
 	},
 	"supports": {
-		"html": false
+		"html": false,
+		"color": {
+			"background": true,
+			"text": true,
+			"link": false,
+			"gradients": false
+		}
 	},
 	"textdomain": "sunflower-latest-posts",
 	"editorScript": "file:./index.js",
